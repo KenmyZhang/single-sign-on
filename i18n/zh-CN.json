@@ -1,0 +1,78 @@
+[
+  {
+    "id": "api.api.init.parsing_templates.debug",
+    "translation": "解析服务模板 %v"
+  },
+  {
+    "id": "api.api.init.parsing_templates.error",
+    "translation": "解析服务模板出错 %v"
+  },
+  {
+    "id": "single-sign-on.config_file",
+    "translation": "从 %v 加载配置文件"
+  },
+  {
+    "id": "single-sign-on.current_version",
+    "translation": "当前版本是 %v (%v/%v/%v)"
+  },
+  {
+    "id": "single-sign-on.working_dir",
+    "translation": "当前工作目录是 %v"
+  },
+  {
+    "id": "api.context.invalid_body_param.app_error",
+    "translation": "参数错误"
+  },  
+  {
+    "id": "api.context.permissions.app_error",
+    "translation": "您没有对应的权限"
+  },  
+  {
+    "id": "api.server.new_server.init.info",
+    "translation": "服务正在初始化..."
+  },
+  {
+    "id": "api.server.start_server.listening.info",
+    "translation": "服务正在监听 %v"
+  },
+  {
+    "id": "api.server.start_server.starting.info",
+    "translation": "启动服务..."
+  },
+  {
+    "id": "api.templates.verify_subject",
+    "translation": "[{{ .SiteName }}] 电子邮件验证"
+  },  
+  {
+    "id": "api.templates.email_verified_code_body.title",
+    "translation": "欢迎加入 {{ .SiteName }}"
+  },      
+  {
+    "id": "api.templates.email_verified_code_body.info",
+    "translation": "请在邮箱注册页面上输入下面的验证码，记住不要轻易把验证码告诉别人"
+  },
+  {
+    "id": "api.templates.email_info",
+    "translation": "有任何问题请随时给我们发送电子邮件: <a href='mailto:{{.SupportEmail}}' style='text-decoration: none; color:#2389D7;'>{{.SupportEmail}}</a>.{{.SiteName}}团队<br>"
+  },    
+  {
+    "id": "store.mgo_patient.update.mobile_exists.app_error",
+    "translation": "手机号码已存在"
+  }, 
+  {
+    "id": "store.mgo_patient.update.find_patient.app_error",
+    "translation": "判断手机号码是否重复失败"
+  },
+  {
+    "id": "utils.i18n.loaded",
+    "translation": "从 '%v' 加载 '%v' 系统翻译信息"
+  },
+  {
+    "id": "web.init.debug",
+    "translation": "初始化 web 路由"
+  },
+  {
+    "id": "api.templates.welcome_body.button",
+    "translation": "验证邮箱"
+  }
+]

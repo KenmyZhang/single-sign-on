@@ -1,0 +1,118 @@
+{
+    "ServiceSettings": {
+        "SiteName": "",
+        "SiteURL": "",
+        "ListenAddress": ":9966",
+        "ConnectionSecurity": "",
+        "TLSCertFile": "",
+        "TLSKeyFile": "",
+        "Forward80To443": false,
+        "ReadTimeout": 300,
+        "WriteTimeout": 300,
+        "MaximumLoginAttempts": 10,
+        "EnableDeveloper": false,
+        "AllowCorsFrom": "",
+        "SessionLengthWebInDays": 30,
+        "SessionCacheInMinutes": 10,
+        "WebserverMode": "gzip"
+    },
+    "SqlSettings": {
+        "DriverName": "mysql",
+        "DataSource": ":-@tcp(127.0.0.1:3308)/?charset=utf8mb4,utf8\u0026readTimeout=30s\u0026writeTimeout=30s",
+        "DataSourceReplicas": [],
+        "DataSourceSearchReplicas": [],
+        "MaxIdleConns": 20,
+        "MaxOpenConns": 300,
+        "Trace": false,
+        "AtRestEncryptKey": "",
+        "QueryTimeout": 30
+    },
+    "FileSettings": {
+        "EnableFileAttachments": true,
+        "MaxFileSize": 52428800,
+        "InitialFont": "init.ttf",
+        "Directory": "./data/"
+    },   
+    "JWTSettings":{
+    	"Secret":"1kfjdsljfkdoja3456etr7gr890",
+	   "Issuer":"",
+	   "ExpireTimeLengthInDays": 20
+    },
+    "LogSettings": {
+        "EnableConsole": true,
+        "ConsoleLevel": "DEBUG",
+        "EnableFile": true,
+        "FileLevel": "INFO",
+        "FileFormat": "",
+        "FileLocation": ""
+    },
+    "EnableSignInWithMobile": true,
+    "PasswordSettings": {
+        "MinimumLength": 5,
+        "Lowercase": true,
+        "Number": true,
+        "Uppercase": true,
+        "Symbol": false
+    },
+    "SmsCodeSettings": {
+        "Enable": true,
+        "Provider": "",
+        "GatewayUrl": "http://dcom/",
+        "AccessKeyId": "",
+        "AccessKeySecret": "",
+        "SignName": "",
+        "TemplateCode": ""
+    },
+    "EmailSettings": {
+        "EnableSignUpWithEmail": true,
+        "EnableSignInWithEmail": true,
+        "EnableSignInWithUsername": true,
+        "FeedbackName": "",
+        "FeedbackEmail": "2224052849@qq.com",
+        "FeedbackOrganization": "",
+        "EnableSMTPAuth": true,
+        "SMTPUsername": "2224052849@qq.com",
+        "SMTPPassword": "",
+        "SMTPServer": "smtp.qq.com",
+        "SMTPPort": "587",
+        "ConnectionSecurity": "STARTTLS",
+        "SkipServerCertificateVerification": true        
+    },
+    "RateLimitSettings": {
+        "Enable": false,
+        "PerSec": 10,
+        "MaxBurst": 100,
+        "MemoryStoreSize": 10000,
+        "VaryByRemoteAddr": true,
+        "VaryByHeader": ""
+    },
+    "PrivacySettings": {
+        "ShowEmailAddress": true,
+        "ShowFullName": true
+    },
+    "WeixinSettings": {
+        "Enable": true,
+        "Secret": "",
+        "Id": "",
+        "Scope": "snsapi_login",
+        "AuthEndpoint": "https://open.weixin.qq.com/connect/qrconnect",
+        "TokenEndpoint": "https://api.weixin.qq.com/sns/oauth2/access_token",
+        "UserApiEndpoint": "https://api.weixin.qq.com/sns/userinfo"
+    },
+    "SupportSettings": {
+        "TermsOfServiceLink": "",
+        "PrivacyPolicyLink": "",
+        "AboutLink": "",
+        "HelpLink": "",
+        "ReportAProblemLink": "",
+        "AdministratorsGuideLink": "",
+        "TroubleshootingForumLink": "",
+        "CommercialSupportLink": "",
+        "SupportEmail": "zhangkunming@.com"
+    },    
+    "LocalizationSettings": {
+        "DefaultServerLocale": "zh-CN",
+        "DefaultClientLocale": "zh-CN",
+        "AvailableLocales": "zh-CN"
+    }
+}
