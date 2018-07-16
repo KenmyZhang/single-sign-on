@@ -2,8 +2,8 @@ package app
 
 import (
 	l4g "github.com/alecthomas/log4go"
-	"github.com/mattermost/platform/model"
-	"github.com/mattermost/platform/utils"	
+	"github.com/KenmyZhang/single-sign-on/model"
+	"github.com/KenmyZhang/single-sign-on/utils"	
 	"net/http"
 	"net/url"
 	"time"
