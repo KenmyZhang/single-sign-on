@@ -206,13 +206,7 @@ func SendSmsCode(mobile string, w http.ResponseWriter, r *http.Request) *model.A
  			sso.TemplateCode, templateParam); err != nil {
  			return model.NewLocAppError("SendSmsCode", "api.user.send_sms_code.aliyun_execute.app_error", nil, "smsClient.Execute() err:" + err.Error())
  		}
-	} else if sso.Provider == "ihuyi" {
-		//互亿无线-ihuyi.com
- 		smsClient := NewIhuyiSmsClient(sso.GatewayUrl)
- 		if err := smsClient.Execute(sso.AccessKeyId, sso.AccessKeySecret, mobile, "", "", verificationCode); err != nil {
- 			return model.NewLocAppError("SendSmsCode", "api.user.send_sms_code.ihuyi_execute.app_error", nil, "smsClient.Execute() err:" + err.Error())
- 		}
-    } else { 
+	} else { 
     	verificationCode = "666666"
     }
 	secure := false
