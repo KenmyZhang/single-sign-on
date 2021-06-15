@@ -10,8 +10,6 @@ import (
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	"github.com/tylerb/graceful"
-	throttled "gopkg.in/throttled/throttled.v2"
-	"gopkg.in/throttled/throttled.v2/store/memstore"
 
 	"github.com/KenmyZhang/single-sign-on/model"
 	"github.com/KenmyZhang/single-sign-on/sqlStore"
@@ -86,25 +84,6 @@ func (m *VaryBy) Key(r *http.Request) string {
 	return utils.GetIpAddress(r)
 }
 
-func initalizeThrottledVaryBy() *throttled.VaryBy {
-	vary := throttled.VaryBy{}
-
-	if utils.Cfg.RateLimitSettings.VaryByRemoteAddr {
-		vary.RemoteAddr = true
-	}
-
-	if len(utils.Cfg.RateLimitSettings.VaryByHeader) > 0 {
-		vary.Headers = strings.Fields(utils.Cfg.RateLimitSettings.VaryByHeader)
-
-		if utils.Cfg.RateLimitSettings.VaryByRemoteAddr {
-			l4g.Warn(utils.T("api.server.start_server.rate.warn"))
-			vary.RemoteAddr = false
-		}
-	}
-
-	return &vary
-}
-
 func redirectHTTPToHTTPS(w http.ResponseWriter, r *http.Request) {
 	if r.Host == "" {
 		http.Error(w, "Not Found", http.StatusNotFound)
@@ -120,38 +99,6 @@ func StartServer() {
 	l4g.Info(utils.T("api.server.start_server.starting.info"))
 
 	var handler http.Handler = &CorsWrapper{Srv.Router}
-
-	if *utils.Cfg.RateLimitSettings.Enable {
-		l4g.Info(utils.T("api.server.start_server.rate.info"))
-
-		store, err := memstore.New(utils.Cfg.RateLimitSettings.MemoryStoreSize)
-		if err != nil {
-			l4g.Critical(utils.T("api.server.start_server.rate_limiting_memory_store"))
-			return
-		}
-
-		quota := throttled.RateQuota{
-			MaxRate:  throttled.PerSec(utils.Cfg.RateLimitSettings.PerSec),
-			MaxBurst: *utils.Cfg.RateLimitSettings.MaxBurst,
-		}
-
-		rateLimiter, err := throttled.NewGCRARateLimiter(store, quota)
-		if err != nil {
-			l4g.Critical(utils.T("api.server.start_server.rate_limiting_rate_limiter"))
-			return
-		}
-
-		httpRateLimiter := throttled.HTTPRateLimiter{
-			RateLimiter: rateLimiter,
-			VaryBy:      &VaryBy{},
-			DeniedHandler: http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-				l4g.Error("%v: Denied due to throttling settings code=429 ip=%v", r.URL.Path, utils.GetIpAddress(r))
-				throttled.DefaultDeniedHandler.ServeHTTP(w, r)
-			}),
-		}
-
-		handler = httpRateLimiter.RateLimit(handler)
-	}
 
 	Srv.GracefulServer = &graceful.Server{
 		Timeout: TIME_TO_WAIT_FOR_CONNECTIONS_TO_CLOSE_ON_SERVER_SHUTDOWN,
